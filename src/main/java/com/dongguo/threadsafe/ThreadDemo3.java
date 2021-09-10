@@ -1,11 +1,10 @@
 package com.dongguo.threadsafe;
 
-import java.util.HashMap;
+
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArraySet;
+
 
 /**
  * @author Dongguo
@@ -21,7 +20,7 @@ public class ThreadDemo3 {
             new Thread(()->{
                 map.put(key,UUID.randomUUID().toString().substring(0, 8));
                 System.out.println(map);
-            }, "Thread" + i).start();
+            }, "t" + i).start();
         }
     }
 }

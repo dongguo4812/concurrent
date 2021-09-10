@@ -1,9 +1,10 @@
 package com.dongguo.threadsafe;
 
-import java.util.HashSet;
+
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArraySet;
+
 
 /**
  * @author Dongguo
@@ -18,7 +19,7 @@ public class ThreadDemo2 {
             new Thread(()->{
                 set.add(UUID.randomUUID().toString().substring(0, 8));
                 System.out.println(set);
-            }, "Thread" + i).start();
+            }, "t" + i).start();
         }
     }
 }

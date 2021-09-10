@@ -12,6 +12,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class ThreadPoolDemo2 {
     public static void main(String[] args) {
+
+        System.out.println(Runtime.getRuntime().availableProcessors());
         ThreadPoolExecutor pool = new ThreadPoolExecutor(
                 2,
                 5,
@@ -19,7 +21,7 @@ public class ThreadPoolDemo2 {
                 TimeUnit.SECONDS,
                 new ArrayBlockingQueue<>(3),
                 Executors.defaultThreadFactory(),
-                new ThreadPoolExecutor.AbortPolicy()
+                new ThreadPoolExecutor.CallerRunsPolicy()
         );
         //10个顾客请求
         try {

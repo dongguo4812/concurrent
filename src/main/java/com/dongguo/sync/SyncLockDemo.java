@@ -6,31 +6,24 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * @author Dongguo
  * @date 2021/8/24 0024-13:58
- * @description: 死锁产生
+ * @description:
  */
 public class SyncLockDemo {
+    Lock lock = new ReentrantLock();
     public static void main(String[] args) {
-        Lock lock = new ReentrantLock();
-        new Thread(() -> {
-            try {
-                lock.lock();
-                System.out.println(Thread.currentThread().getName() + "-外层");
+        new SyncLockDemo().add();
+    }
+    public long number = 0;
 
-                try {
-                    lock.lock();
-                    System.out.println(Thread.currentThread().getName() + "-内层");
-                } finally {
-                    //不去释放锁
-                //    lock.unlock();
-                }
-            } finally {
-                lock.unlock();
-            }
-        }, "ThreadA").start();
-        new Thread(()->{
+    //递归
+    public void add(){
+        try {
             lock.lock();
-            System.out.println(Thread.currentThread().getName() + "-执行");
+            number++;
+            System.out.println(number);
+            add();//自己调自己
+        } finally {
             lock.unlock();
-        },"ThreadB").start();
+        }
     }
 }

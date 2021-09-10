@@ -44,7 +44,7 @@ public class ReadWriteLockDemo {
             try {
                 System.out.println(Thread.currentThread().getName() + "写入：" + key);
                 //暂停一会
-                TimeUnit.MICROSECONDS.sleep(300);
+                TimeUnit.MILLISECONDS.sleep(300);
                 //放数据
                 map.put(key, value);
                 System.out.println(Thread.currentThread().getName() + "写完" + key);
@@ -64,7 +64,7 @@ public class ReadWriteLockDemo {
             try {
                 System.out.println(Thread.currentThread().getName() + "取出：" + key);
                 //暂停一会
-                TimeUnit.MICROSECONDS.sleep(300);
+                TimeUnit.MILLISECONDS.sleep(300);
                 result = map.get(key);
                 System.out.println(Thread.currentThread().getName() + "取完" + key);
             } catch (InterruptedException e) {

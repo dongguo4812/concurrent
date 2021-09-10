@@ -1,4 +1,6 @@
+
 import lombok.extern.slf4j.Slf4j;
+import org.apache.log4j.Logger;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -6,8 +8,9 @@ import org.junit.jupiter.api.Test;
  * @date 2021/8/23 0023-16:35
  * @description:
  */
-@Slf4j(topic = "c.Test1")
+
 public class Test2 {
+    private static Logger log = Logger.getLogger(Test.class);
     @Test
     public void testLog(){
         log.debug("debug");
