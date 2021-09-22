@@ -1,3 +1,5 @@
+package com.dongguo;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.ArrayBlockingQueue;

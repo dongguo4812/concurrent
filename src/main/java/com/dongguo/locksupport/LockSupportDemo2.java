@@ -11,10 +11,13 @@ import java.util.concurrent.locks.LockSupport;
 public class LockSupportDemo2 {
     public static void main(String[] args) {
         Thread t1 = new Thread(() -> {
-            System.out.println( "中断标志位1：" + Thread.currentThread().isInterrupted());
-            LockSupport.park();
-            System.out.println( "中断标志位2：" + Thread.currentThread().isInterrupted());
-            System.out.println(Thread.currentThread().getName()+"被唤醒"+ Thread.currentThread().isInterrupted());
+            for (int i = 0; i < 5; i++) {
+
+                System.out.println( "park前中断标志位1：" + Thread.currentThread().isInterrupted());
+                Thread.interrupted();//返回中断状态并清除中断状态
+                LockSupport.park();
+                System.out.println(Thread.currentThread().getName()+"被唤醒 中断状态2"+ Thread.currentThread().isInterrupted());
+            }
         }, "t1");
         t1.start();
 
@@ -24,11 +27,6 @@ public class LockSupportDemo2 {
             e.printStackTrace();
         }
         t1.interrupt();
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println(t1.getName() + "中断标志位3：" + t1.isInterrupted());
+
     }
 }
